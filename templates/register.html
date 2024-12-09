@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2563eb">
+    <title>Criar Conta - Code Notes</title>
+    
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --bg-color: #f1f5f9;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .register-container {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .register-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .register-header h1 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .register-header p {
+            color: #64748b;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s;
+            background-color: white;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .error-message {
+            color: #ef4444;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .register-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #64748b;
+        }
+
+        .register-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .register-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .back-to-home:hover {
+            color: var(--primary-color);
+            transform: translateX(-2px);
+        }
+
+        .password-requirements {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .password-requirements ul {
+            list-style: none;
+            margin-top: 0.25rem;
+            padding-left: 0.5rem;
+        }
+
+        .password-requirements li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .password-requirements i {
+            font-size: 0.75rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .back-to-home {
+                top: 1rem;
+                left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('home') }}" class="back-to-home">
+        <i class="bi bi-arrow-left"></i>
+        Voltar para Home
+    </a>
+
+    <div class="register-container">
+        <div class="register-header">
+            <h1>Criar Conta</h1>
+            <p>Comece a organizar seus códigos hoje mesmo</p>
+        </div>
+
+        <form action="{{ url_for('register') }}" method="POST">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" id="name" name="name" required placeholder="Seu nome">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required placeholder="••••••••">
+                <div class="password-requirements">
+                    <p>A senha deve conter:</p>
+                    <ul>
+                        <li><i class="bi bi-check-circle"></i>Mínimo de 8 caracteres</li>
+                        <li><i class="bi bi-check-circle"></i>Pelo menos uma letra maiúscula</li>
+                        <li><i class="bi bi-check-circle"></i>Pelo menos um número</li>
+                        <li><i class="bi bi-check-circle"></i>Pelo menos um caractere especial</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirmar Senha</label>
+                <input type="password" id="confirm_password" name="confirm_password" required placeholder="••••••••">
+            </div>
+            {% if error %}
+            <div class="error-message">
+                <i class="bi bi-exclamation-circle"></i>
+                {{ error }}
+            </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-person-plus"></i>
+                Criar Conta
+            </button>
+        </form>
+
+        <div class="register-footer">
+            <p>Já tem uma conta? <a href="{{ url_for('login') }}">Fazer login</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Validação de senha em tempo real
+        const password = document.getElementById('password');
+        const requirements = document.querySelectorAll('.password-requirements li i');
+
+        password.addEventListener('input', function() {
+            const value = this.value;
+            
+            // Mínimo de 8 caracteres
+            requirements[0].className = value.length >= 8 ? 'bi bi-check-circle-fill' : 'bi bi-check-circle';
+            
+            // Pelo menos uma letra maiúscula
+            requirements[1].className = /[A-Z]/.test(value) ? 'bi bi-check-circle-fill' : 'bi bi-check-circle';
+            
+            // Pelo menos um número
+            requirements[2].className = /[0-9]/.test(value) ? 'bi bi-check-circle-fill' : 'bi bi-check-circle';
+            
+            // Pelo menos um caractere especial
+            requirements[3].className = /[!@#$%^&*]/.test(value) ? 'bi bi-check-circle-fill' : 'bi bi-check-circle';
+        });
+
+        // Validação de confirmação de senha
+        const confirmPassword = document.getElementById('confirm_password');
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function(e) {
+            if (password.value !== confirmPassword.value) {
+                e.preventDefault();
+                const error = document.createElement('div');
+                error.className = 'error-message';
+                error.innerHTML = '<i class="bi bi-exclamation-circle"></i>As senhas não coincidem';
+                confirmPassword.parentNode.appendChild(error);
+            }
+        });
+    </script>
+</body>
+</html> 
