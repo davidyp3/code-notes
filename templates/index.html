@@ -4,8 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2563eb">
-    <title>Code Notes - Suas Notas de Código</title>
+    <meta name="google-adsense-account" content="ca-pub-7362318986505377">
     
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7362318986505377"
+     crossorigin="anonymous"></script>
+    
+    <!-- SEO Meta Tags -->
+    <title>Code Notes - Organize seus Snippets de Código | David Farias</title>
+    <meta name="description" content="Code Notes é uma aplicação web para organizar e gerenciar seus snippets de código favoritos. Suporte para múltiplas linguagens de programação, highlight de sintaxe e fácil compartilhamento.">
+    <meta name="keywords" content="code notes, snippets de código, gerenciador de código, programação, desenvolvimento, python, javascript, html, css, sql, java">
+    <meta name="author" content="David da Silva Farias">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:title" content="Code Notes - Organize seus Snippets de Código">
+    <meta property="og:description" content="Organize e gerencie seus snippets de código favoritos com suporte para múltiplas linguagens de programação e highlight de sintaxe.">
+    <meta property="og:image" content="{{ url_for('static', filename='og-image.png', _external=True) }}">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ request.url }}">
+    <meta name="twitter:title" content="Code Notes - Organize seus Snippets de Código">
+    <meta name="twitter:description" content="Organize e gerencie seus snippets de código favoritos com suporte para múltiplas linguagens de programação e highlight de sintaxe.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='og-image.png', _external=True) }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ request.url }}">
+
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
     <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
