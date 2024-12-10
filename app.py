@@ -181,5 +181,9 @@ def _jinja2_filter_datetime(date, fmt=None):
         fmt = '%d/%m/%Y %H:%M'
     return date.strftime(fmt)
 
+# Criar tabelas
+with app.app_context():
+    db.create_all()
+
 if __name__ == '__main__':
     app.run(debug=True) 
