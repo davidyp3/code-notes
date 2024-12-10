@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Code Notes
 
 Uma aplicação web para salvar e organizar snippets de código de programação.
@@ -49,3 +50,7 @@ python app.py
 - Frontend: HTML, CSS, JavaScript
 - Banco de dados: SQLite
 - Highlight de código: Prism.js 
+=======
+# code-notes
+Code Notes - Aplicativo web para gerenciar e organizar snippets de código com suporte a múltiplas linguagens de programação.  Desenvolvido com Python/Flask, oferece highlight de sintaxe em tempo real, sistema de busca, categorização por linguagem e interface moderna.
+>>>>>>> 69ef5218601f285f5573257935c3583ba73e0c67
